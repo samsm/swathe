@@ -36,5 +36,9 @@ module Swathe
     def directories
       subset {|e| e.directory? }
     end
+
+    def file(filename)
+      files.detect {|f| filename === f.full_name }
+    end
   end
 end

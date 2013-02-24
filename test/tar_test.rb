@@ -6,7 +6,7 @@ class TestTarIntegration < MiniTest::Unit::TestCase
     @tar ||= Swathe::Tar.open(path)
   end
 
-  def test_works
+  def test_is_a_tar
     assert tar.tar?
   end
 
@@ -20,6 +20,14 @@ class TestTarIntegration < MiniTest::Unit::TestCase
 
   def test_directory_list
     assert_equal ["samples/"], tar.directories.collect(&:full_name)
+  end
+
+  def test_read_file
+    assert_match %r(This is a sample file to test extraction), tar.file('samples/file.txt').read
+  end
+
+  def test_extractor
+    assert_kind_of Swathe::Extractor, tar.extractor
   end
 
 end

@@ -1,5 +1,6 @@
 require "swathe/version"
 require "swathe/archive"
+require "swathe/extractor"
 require "swathe/tar"
 require "swathe/gzip"
 require "swathe/zip"

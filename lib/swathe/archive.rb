@@ -25,5 +25,9 @@ module Swathe
       false
     end
 
+    def extractor(default_destination = nil)
+      Extractor.new(self, default_destination)
+    end
+
   end
 end
