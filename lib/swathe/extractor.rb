@@ -8,11 +8,19 @@ module Swathe
       self.default_destination = default_destination
     end
 
-    # Needs edit: Doesn't have to be a file.
-    def extract(filename, destination = nil)
+    def target_path(destination)
+      case destination
+      when nil then default_destination
+      when %r(\A/) then destination
+      else
+        "#{default_destination}/#{destination}"
+      end
+    end
+      
+    def extract(file_path, destination = nil)
       # Need to make this able to ignore the file's path if need be.
       base_destination_directory = destination || default_destination
-      entry = source.file(filename)
+      entry = source.entry(file_path)
       if entry
         target = "#{base_destination_directory}/#{entry.full_name}"
         ensure_target_directory_exists_for(target)

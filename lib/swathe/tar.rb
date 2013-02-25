@@ -1,3 +1,4 @@
+# was helpful http://old.thoughtsincomputation.com/posts/tar-and-a-few-feathers-in-ruby
 module Swathe
   class Tar < Archive
     attr_accessor :tar_reader
@@ -16,8 +17,8 @@ module Swathe
     end
 
     def each
+      return enum_for(__callee__) unless block_given?
       tar_reader.rewind
-      return enum_for(:each) unless block_given?
       tar_reader.each {|e| yield(e) }
     end
 
@@ -37,8 +38,8 @@ module Swathe
       subset {|e| e.directory? }
     end
 
-    def file(filename)
-      files.detect {|f| filename === f.full_name }
+    def entry(filename)
+      detect {|f| filename === f.full_name }
     end
   end
 end

@@ -23,7 +23,7 @@ class TestTarIntegration < MiniTest::Unit::TestCase
   end
 
   def test_read_file
-    assert_match %r(This is a sample file to test extraction), tar.file('samples/file.txt').read
+    assert_match %r(This is a sample file to test extraction), tar.entry('samples/file.txt').read
   end
 
   def test_extractor
