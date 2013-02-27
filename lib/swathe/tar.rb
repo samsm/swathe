@@ -4,12 +4,12 @@ module Swathe
     attr_accessor :tar_reader
     include Enumerable
 
-    def initialize(tar_reader)
-      self.tar_reader = tar_reader
+    def initialize(io)
+      self.tar_reader = Gem::Package::TarReader.new(io)
     end
 
     def self.open(file_name)
-      new(Gem::Package::TarReader.new(File.open(file_name)))
+      new(File.open(file_name))
     end
 
     def tar?
