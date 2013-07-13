@@ -1,9 +1,9 @@
-require "swathe/version"
-require "swathe/archive"
-require "swathe/extractor"
-require "swathe/tar"
-require "swathe/gzip"
-require "swathe/zip"
+require_relative "swathe/version"
+require_relative "swathe/archive"
+require_relative "swathe/extractor"
+require_relative "swathe/tar"
+require_relative "swathe/gzip"
+require_relative "swathe/zip"
 
 
 module Swathe

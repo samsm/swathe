@@ -4,11 +4,11 @@ module Swathe
 
     def self.open(file_name)
       case File.extname(file_name)
-      when 'gz'
+      when '.gz', '.tgz'
         Gzip.open(file_name)
-      when 'tar'
+      when '.tar'
         Tar.open(file_name)
-      when 'zip'
+      when '.zip'
         Zip.open(file_name)
       end
     end

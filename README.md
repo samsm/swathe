@@ -1,24 +1,22 @@
 # Swathe
 
-TODO: Write a gem description
+An archive extraction tool. Intends to support tar, zip, tgz, etc without much fuss.
+
+Presently crude ... but effective? Maybe!
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
     gem 'swathe'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install swathe
 
 ## Usage
 
-TODO: Write usage instructions here
+    # This should work from the root of this checked out project.
+    %w(tar tgz zip).each do |archive_type|
+      archive = Swathe::Archive.open("samples/sample.#{archive_type}")
+      puts "Opening: sample.#{archive_type}"
+      puts "First file is #{archive.first.full_name}"
+      p "Contents are: #{archive.first.read}"
+    end
 
 ## Contributing
 

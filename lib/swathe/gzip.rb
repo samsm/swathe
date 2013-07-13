@@ -1,4 +1,5 @@
 require 'zlib'
+require 'forwardable'
 
 module Swathe
   class Gzip < Archive
@@ -6,6 +7,7 @@ module Swathe
 
     extend Forwardable
     def_delegators :tar, :entry, :each, :files, :directories
+    include Enumerable
 
     def initialize(io)
       self.gzip_reader = Zlib::GzipReader.open(io)
@@ -32,9 +34,9 @@ module Swathe
       (%r(\.tgz\Z) === File.extname(gzip_reader.path))
     end
 
-    def each(*args)
+    def each(*args, &blk)
       return enum_for(__callee__) unless block_given?
-      tar ? tar.each(*args) : [gzip_reader].each(*args)
+      contains_tar? ?  tar.each(*args, &blk) : [gzip_reader].each(*args, &blk)
     end
 
     def self.gzip?(file)

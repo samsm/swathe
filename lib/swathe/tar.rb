@@ -1,3 +1,5 @@
+require 'rubygems/package'
+
 # was helpful http://old.thoughtsincomputation.com/posts/tar-and-a-few-feathers-in-ruby
 module Swathe
   class Tar < Archive
